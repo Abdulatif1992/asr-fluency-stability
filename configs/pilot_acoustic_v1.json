@@ -1,0 +1,61 @@
+{
+  "configuration_name": "pilot_acoustic_v1",
+  "status": "frozen_for_pilot_not_final_validation",
+  "sample_rate_hz": 16000,
+  "silero_vad": {
+    "threshold": 0.5,
+    "min_speech_duration_ms": 100,
+    "min_silence_duration_ms": 200,
+    "speech_pad_ms": 0,
+    "hybrid_padding_ms": 200
+  },
+  "energy_segmentation": {
+    "method": "librosa.effects.split",
+    "top_db": 30,
+    "frame_length": 512,
+    "hop_length": 160,
+    "min_active_segment_ms": 50
+  },
+  "pitch": {
+    "method": "librosa.pyin",
+    "fmin_hz": 75,
+    "fmax_hz": 500,
+    "frame_length": 1024,
+    "hop_length": 256,
+    "fill_na": "nan",
+    "statistics": [
+      "mean",
+      "sd",
+      "voiced_ratio"
+    ]
+  },
+  "pause_thresholds_ms": [
+    100,
+    200
+  ],
+  "main_pause_threshold_ms": 200,
+  "features": [
+    "duration_sec",
+    "speech_duration_sec",
+    "speech_ratio",
+    "pause_count_100ms",
+    "pause_count_200ms",
+    "pause_duration_200ms",
+    "pause_ratio_200ms",
+    "leading_silence_sec",
+    "trailing_silence_sec",
+    "pitch_mean_hz",
+    "pitch_sd_hz",
+    "voiced_ratio",
+    "rms_mean",
+    "rms_sd"
+  ],
+  "limitations": [
+    "No expert timestamped pause reference",
+    "Prompt text is not a verbatim transcript",
+    "Detected pauses do not necessarily indicate hesitation",
+    "Silero boundaries may omit low-energy speech",
+    "Pitch estimates may contain octave errors",
+    "Configuration is frozen for pilot consistency only"
+  ]
+}

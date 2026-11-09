@@ -1,0 +1,130 @@
+{
+  "name": "speaker_disjoint_cv_v1",
+  "status": "frozen",
+  "dataset": "mispeech/speechocean762",
+  "selected_audio_count": 400,
+  "unique_speakers": 20,
+  "number_of_folds": 5,
+  "validation_speakers_per_fold": 4,
+  "validation_audios_per_fold": 80,
+  "group_key": "speaker",
+  "split_method": "GroupKFold",
+  "split_source": "precomputed_candidate_csv",
+  "sklearn_version_at_freeze": "1.6.1",
+  "random_seed_required_for_reusing_saved_split": false,
+  "speaker_disjoint": true,
+  "same_audio_hypotheses_same_fold": true,
+  "official_test_split_untouched": true,
+  "modeling_dataset_sha256": "7d20428a14d9e00b88f1a20b36b7147bf5b98234045a093172fef76b68276746",
+  "frozen_split_sha256": "5f87cdc1c2f69922bcb542ee9516f5f89168bf68402fbd2449b28fcf61a375e7",
+  "feature_design_sha256": "626b0050f58f35fafa4f2efcd1888fda2a195454e544c4cb094cd50e796a1b83",
+  "primary_models": [
+    "A",
+    "B1",
+    "C1"
+  ],
+  "secondary_ablation_models": [
+    "B2",
+    "C2"
+  ],
+  "training_rules": {
+    "all_validation_speakers_unseen_in_training": true,
+    "fit_imputation_on_training_only": true,
+    "fit_scaling_on_training_only": true,
+    "tune_hyperparameters_with_training_speakers_only": true,
+    "model_A_one_row_per_audio": true,
+    "model_B_C_repeated_hypotheses_grouped_by_audio": true,
+    "evaluate_each_hypothesis_separately": true,
+    "no_validation_label_based_feature_selection": true
+  },
+  "evaluation_plan": {
+    "primary_metrics": [
+      "MAE",
+      "RMSE"
+    ],
+    "additional_metrics": [
+      "speaker_level_MAE",
+      "per_fold_MAE",
+      "prediction_range_across_H1_H5",
+      "prediction_sd_across_H1_H5"
+    ],
+    "acoustic_model_expected_asr_invariance": true
+  },
+  "fold_details": [
+    {
+      "fold": 1,
+      "train_audio_count": 320,
+      "validation_audio_count": 80,
+      "train_speaker_count": 16,
+      "validation_speaker_count": 4,
+      "validation_speakers": [
+        "2059",
+        "3423",
+        "9600",
+        "9639"
+      ],
+      "train_mean_fluency": 7.425,
+      "validation_mean_fluency": 7.4
+    },
+    {
+      "fold": 2,
+      "train_audio_count": 320,
+      "validation_audio_count": 80,
+      "train_speaker_count": 16,
+      "validation_speaker_count": 4,
+      "validation_speakers": [
+        "0960",
+        "3021",
+        "6912",
+        "9634"
+      ],
+      "train_mean_fluency": 7.559375,
+      "validation_mean_fluency": 6.8625
+    },
+    {
+      "fold": 3,
+      "train_audio_count": 320,
+      "validation_audio_count": 80,
+      "train_speaker_count": 16,
+      "validation_speaker_count": 4,
+      "validation_speakers": [
+        "0145",
+        "2427",
+        "6010",
+        "9619"
+      ],
+      "train_mean_fluency": 7.48125,
+      "validation_mean_fluency": 7.175
+    },
+    {
+      "fold": 4,
+      "train_audio_count": 320,
+      "validation_audio_count": 80,
+      "train_speaker_count": 16,
+      "validation_speaker_count": 4,
+      "validation_speakers": [
+        "0075",
+        "2402",
+        "5414",
+        "9614"
+      ],
+      "train_mean_fluency": 7.371875,
+      "validation_mean_fluency": 7.6125
+    },
+    {
+      "fold": 5,
+      "train_audio_count": 320,
+      "validation_audio_count": 80,
+      "train_speaker_count": 16,
+      "validation_speaker_count": 4,
+      "validation_speakers": [
+        "0070",
+        "2242",
+        "5195",
+        "9611"
+      ],
+      "train_mean_fluency": 7.2625,
+      "validation_mean_fluency": 8.05
+    }
+  ]
+}

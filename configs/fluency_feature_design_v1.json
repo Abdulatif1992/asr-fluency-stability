@@ -1,0 +1,96 @@
+{
+  "name": "fluency_feature_design_v1",
+  "status": "design_predeclared_pending_full_prompt_extraction",
+  "dataset": "mispeech/speechocean762",
+  "selected_audio_count": 400,
+  "asr_hypothesis_count": 2000,
+  "target": "human_fluency_score",
+  "acoustic_feature_count": 14,
+  "acoustic_feature_names": "read exact 14 column names from STEP 2 artifact",
+  "linguistic_feature_names": [
+    "word_count",
+    "unique_word_count",
+    "type_token_ratio",
+    "mean_word_length",
+    "character_count",
+    "adjacent_repeat_count",
+    "adjacent_repeat_ratio"
+  ],
+  "prompt_feature_names": [
+    "prompt_asr_word_disagreement",
+    "prompt_asr_char_disagreement"
+  ],
+  "models": {
+    "A": {
+      "description": "Acoustic-only baseline",
+      "feature_groups": [
+        "acoustic"
+      ]
+    },
+    "B1": {
+      "description": "Transcript-only baseline",
+      "feature_groups": [
+        "linguistic"
+      ]
+    },
+    "B2": {
+      "description": "Prompt-aware transcript ablation",
+      "feature_groups": [
+        "linguistic",
+        "prompt"
+      ]
+    },
+    "C1": {
+      "description": "Acoustic + transcript fusion",
+      "feature_groups": [
+        "acoustic",
+        "linguistic"
+      ]
+    },
+    "C2": {
+      "description": "Acoustic + prompt-aware fusion",
+      "feature_groups": [
+        "acoustic",
+        "linguistic",
+        "prompt"
+      ]
+    }
+  },
+  "primary_models": [
+    "A",
+    "B1",
+    "C1"
+  ],
+  "secondary_ablation_models": [
+    "B2",
+    "C2"
+  ],
+  "validation_rules": {
+    "speaker_disjoint": true,
+    "same_audio_hypotheses_same_partition": true,
+    "preprocessing_fit_on_training_only": true,
+    "hyperparameter_selection_within_training_data": true,
+    "human_labels_not_used_for_feature_selection_now": true,
+    "sealed_official_test_split_untouched": true
+  },
+  "missing_value_policy": {
+    "adjacent_repeat_ratio": "NaN for one-word transcripts; impute using training-fold statistics only",
+    "other_features": "check and handle inside training folds"
+  },
+  "scientific_cautions": [
+    "Reading prompt is not a verbatim human transcript.",
+    "Prompt-ASR disagreement is not ground-truth WER or CER.",
+    "Transcript lexical diversity does not directly measure vocabulary proficiency.",
+    "Transcript repetition may reflect ASR errors rather than speech disfluency.",
+    "ASR anomalies remain in primary analysis.",
+    "Sensitivity exclusions require explicit documented rules.",
+    "Prompt-aware gains may reflect access to target sentence information."
+  ],
+  "next_required_task": "Extract two prompt-ASR disagreement features for all 400 audios and 2000 hypotheses",
+  "source_sha256": {
+    "asr": "b67dfe5cca2329407ab07658809434c2e3bad00d227485f3f8c8c9c1dbbf3e80",
+    "linguistic": "ed9585aa09defb10cd57d40f98356ca1de7fbecaf6e5251c0dcd035ab0395459",
+    "acoustic": "4f477cd0fc0f6cf4382bc92fa39bdae734f22a9440e949b592143db2e261dced",
+    "prompt_pilot": "bff38db4e4b5f1ee711091d0a621aac42a8214e1ad10fab9d18f6b2c29794143"
+  }
+}

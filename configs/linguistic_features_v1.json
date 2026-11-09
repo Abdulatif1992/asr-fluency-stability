@@ -1,0 +1,24 @@
+{
+  "name": "linguistic_features_v1",
+  "status": "proposed_not_frozen",
+  "source_asr_sha256": "b67dfe5cca2329407ab07658809434c2e3bad00d227485f3f8c8c9c1dbbf3e80",
+  "normalization": "unicode_casefold",
+  "tokenization": "unicode_words_internal_apostrophes",
+  "punctuation": "excluded_from_token_counts",
+  "features": [
+    "word_count",
+    "unique_word_count",
+    "type_token_ratio",
+    "mean_word_length",
+    "character_count",
+    "adjacent_repeat_count",
+    "adjacent_repeat_ratio"
+  ],
+  "empty_text_policy": "zero_counts_nan_ratios",
+  "notes": [
+    "Features describe ASR output, not verified speech.",
+    "No prompt or fluency label is used.",
+    "TTR is dependent on utterance length.",
+    "Adjacent repetition is a transcript proxy."
+  ]
+}

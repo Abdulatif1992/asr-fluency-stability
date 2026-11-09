@@ -1,0 +1,16 @@
+# Recorded Kaggle environment. Install an appropriate CUDA/CPU PyTorch build separately.
+# Verified packages recorded in reports/environment_versions.txt.
+numpy==2.1.3
+pandas==2.3.3
+pyarrow==23.0.1
+scipy==1.16.3
+scikit-learn==1.6.1
+librosa==0.11.0
+soundfile==0.14.0
+transformers==5.16.1
+requests==2.34.2
+nbformat>=5.9
+matplotlib
+joblib
+silero-vad
+# torch==2.11.0+cu128 was recorded in Kaggle but is CUDA/platform-specific.

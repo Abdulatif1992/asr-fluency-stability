@@ -1,0 +1,28 @@
+# Python and Jupyter caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+!env.example
+# Raw datasets and private credentials
+*.parquet
+*.wav
+*.flac
+*.mp3
+*.key
+*.pem
+credentials.json
+secrets.json
+# Working run outputs, not committed by default
+outputs/
+tmp/
+.cache/
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
